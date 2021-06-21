@@ -57,3 +57,6 @@ To detect and alert for all ssh session initiations, the filebeat field "system.
 
 ![ssh_authentication](https://github.com/danielpeppin/SIEM_setup/blob/main/ssh_authentication_dashboard.PNG)
 
+## Validation
+
+With the alerts set and the dashboard created, an attack is performed to validate that the alerts are functioning. As a bonus we will see observe the attack visually on our dashboard.
