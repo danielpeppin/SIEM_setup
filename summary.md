@@ -94,6 +94,12 @@ We can see alerts being triggered from each stage of the attack
 
 ![list of alerts](https://github.com/danielpeppin/SIEM_setup/blob/main/alerts_triggered.PNG)
 
+THe nmap scan and/or dirb scan triggered the "HTTP Network Traffic" rule several times. Two successfull SSH authentications triggered the "SSH Session Initiated" both times. The root escalation alert was triggered 1 time, and the wpscan alert was triggered 1 time. We will have realtime indication of these events as they occur. 
+
 We can see visually the traffic spike, and the logging of key occurances like ssh authentication and sudo escalation
 
 ![dashboard during attack](https://github.com/danielpeppin/SIEM_setup/blob/main/attack_dashboard.PNG)
+
+There is a large traffic spike, seemingly from the nmap and/or dirb scan. There is a log of multiple ssh login attempts including 2 successful ones. There is a log of a sudo escalted command being run, by steven. THere is also evidence of a wpscan as per the WPScan user agent being used. 
+
+We have
