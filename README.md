@@ -47,6 +47,8 @@ An alert is set up, using JSON code, to check user_agent.original for "WPScan v3
 
 ![alert: wpscan_JSON](https://github.com/danielpeppin/SIEM_setup/blob/main/trigger_wpscan.PNG)
 
+Full JSON file is at https://github.com/danielpeppin/SIEM_setup/blob/main/wpscan.JSON
+
 A dashboard is setup to monitor the useragents being used on the webserver:
 
 ![dashboard: wpscan](https://github.com/danielpeppin/SIEM_setup/blob/main/dashboard_wpscan.PNG)
