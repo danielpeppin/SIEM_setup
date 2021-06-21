@@ -1,0 +1,61 @@
+{
+  "trigger": {
+    "schedule": {
+      "interval": "1m"
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "search_type": "query_then_fetch",
+        "indices": [
+          "packetbeat-*"
+        ],
+        "rest_total_hits_as_int": true,
+        "body": {
+          "size": 0,
+          "query": {
+            "bool": {
+              "filter": [
+                {
+                  "exists": {
+                    "field": "user_agent.original"
+                  }
+                },
+                {
+                  "term": {
+                    "user_agent.original": "WPScan v3.7.8 (https://wpscan.org/)"
+                  }
+                },
+                {
+                  "range": {
+                    "@timestamp": {
+                      "gte": "{{ctx.trigger.scheduled_time}}||-1m",
+                      "lte": "{{ctx.trigger.scheduled_time}}",
+                      "format": "strict_date_optional_time||epoch_millis"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "compare": {
+      "ctx.payload.hits.total": {
+        "gte": 1
+      }
+    }
+  },
+  "actions": {
+    "my-logging-action": {
+      "logging": {
+        "level": "info",
+        "text": "WPScan Conducted."
+      }
+    }
+  }
+}
