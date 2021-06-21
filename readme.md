@@ -41,8 +41,19 @@ To detect and alert for a wpscan, the user_agent field is checked for the user_a
 
 JSON code used to check user_agent.original for "WPScan v3.7.8 (https://wpscan.org/)"
 
-![excess_traffic](https://github.com/danielpeppin/SIEM_setup/blob/main/wpscan_watcher2.PNG)
+![wpscan_JSON](https://github.com/danielpeppin/SIEM_setup/blob/main/wpscan_watcher2.PNG)
 
 wpscan triggering several instances of user_agent.original equal to "WPScan v3.7.8 (https://wpscan.org/)"
 
-3) 
+3) Root Escalation
+
+To detect and alert for all sudo authentications, the filebeat field "system.auth.sudo.user" containing "root" will be checked for. Any and all instances of these events in filebeat will be alerted for (threshold for alert is equal to or larger than 1 instance for 1s). The dashboard is configured to show the time of the event and the user account that commited the sudo escalation.
+
+![sudo_root_escalation](https://github.com/danielpeppin/SIEM_setup/blob/main/root_escalation_dashboard.PNG)
+
+4) SSH Session Initiation
+
+To detect and alert for all ssh session initiations, the filebeat field "system.auth.ssh.event" containing "accepted" will be checked for. Again, any and all instances of these events in filebeat will be alerted for (threshold for alerting is set to equal to or greater than 1 instances for 1s). The dashboard is configured to show the time of the event and the user account that was authenticated for ssh.
+
+![ssh_authentication](https://github.com/danielpeppin/SIEM_setup/blob/main/ssh_authentication_dashboard.PNG)
+
